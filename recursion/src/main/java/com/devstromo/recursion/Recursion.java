@@ -1,4 +1,4 @@
-package com.devstromo;
+package com.devstromo.recursion;
 
 public class Recursion {
 
@@ -37,5 +37,25 @@ public class Recursion {
         if (N == 1)
             return result;
         return factorial(N - 1, N * result);
+    }
+
+    public void head(int n) {
+        if (n == 0)
+            return;
+        //we call the method recursively
+        head(n - 1);
+        // we do some operations
+        // operation = System.out.println
+        System.out.println("The value n=" + n);
+    }
+
+    public void tail(int n) {
+        if (n == 0)
+            return;
+        // we do some operations
+        // operation = System.out.println
+        System.out.println("The value n=" + n);
+        //we call the method recursively
+        tail(n - 1);
     }
 }

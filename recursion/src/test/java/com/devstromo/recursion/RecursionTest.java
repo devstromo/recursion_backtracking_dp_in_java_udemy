@@ -1,4 +1,4 @@
-package com.devstromo;
+package com.devstromo.recursion;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,5 +22,15 @@ public class RecursionTest {
     @Test
     public void recursionTest() {
         assertEquals(15, recursion.recursionSum(5));
+    }
+
+    @Test
+    public void recursionHeadTest() {
+        recursion.head(5);
+    }
+
+    @Test
+    public void recursionTailTest() {
+        recursion.tail(5);
     }
 }
