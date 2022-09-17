@@ -22,4 +22,9 @@ class FibonacciTest {
     public void fibTailTest() {
         assertEquals(55, fibonacci.tail(10, 0, 1));
     }
+
+    @Test
+    public void fibIterativeTest() {
+        fibonacci.iterative(10);
+    }
 }

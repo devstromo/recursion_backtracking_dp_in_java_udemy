@@ -26,4 +26,18 @@ public class Fibonacci {
             return b;
         return tail(n - 1, b, a + b);
     }
+
+    // prints out the Fibonacci numbers up to n
+    public void iterative(int n) {
+
+        int a = 0;
+        int b = 1;
+        while (a < n) {
+            System.out.println(a);
+            int temp = b;
+            b = a + b;
+            a = temp;
+        }
+
+    }
 }
