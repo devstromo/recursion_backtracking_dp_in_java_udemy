@@ -10,13 +10,15 @@ public class NQueensProblem {
         this.chessTable = new int[numOfQueens][numOfQueens];
     }
 
-    public void solve() {
+    public boolean solve() {
         // start solving the problem starting with the first column
         // another interpretation: start placing the queens starting with index
         if (setQueens(0)) {
             printQueens();
+            return true;
         } else {
             System.out.println("There is no solution");
+            return false;
         }
     }
 
@@ -46,7 +48,29 @@ public class NQueensProblem {
     }
 
     private boolean isPlaceValid(int rowIndex, int colIndex) {
-        return false;
+        // there can not be other queens in the same row
+        for (int i = 0; i < colIndex; i++) {
+            if (chessTable[rowIndex][i] == 1)
+                return false;
+        }
+
+        // we do not have to check the columns
+
+        // check the diagonal
+        // diagonal locations from top left to bottom right
+        for (int i = rowIndex, j = colIndex; i >= 0 && j >= 0; i--, j--) {
+            if (chessTable[i][j] == 1)
+                return false;
+        }
+
+        // diagonal from top right to bottom left
+        for (int i = rowIndex, j = colIndex; i < chessTable.length && j >= 0; i++, j--) {
+            if (chessTable[i][j] == 1)
+                return false;
+        }
+
+        // the position (rowIndex, colIndex) is valid - there ara no "collisions"
+        return true;
     }
 
     // 1 represents the queen
@@ -55,9 +79,9 @@ public class NQueensProblem {
         for (int[] row : chessTable) {
             for (int j = 0; j < chessTable.length; j++) {
                 if (row[j] == 1) {
-                    System.out.println("*");
+                    System.out.print(" * ");
                 } else {
-                    System.out.println(" - ");
+                    System.out.print(" - ");
                 }
             }
             System.out.println();
