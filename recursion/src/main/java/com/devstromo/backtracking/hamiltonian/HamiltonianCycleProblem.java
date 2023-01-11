@@ -2,9 +2,9 @@ package com.devstromo.backtracking.hamiltonian;
 
 public class HamiltonianCycleProblem {
 
-    private int numOfVertexes;
-    private int[] hamiltonianPath;
-    private int[][] adjacencyMatrix;
+    private final int numOfVertexes;
+    private final int[] hamiltonianPath;
+    private final int[][] adjacencyMatrix;
 
     public HamiltonianCycleProblem(int[][] adjacencyMatrix) {
         this.adjacencyMatrix = adjacencyMatrix;
@@ -48,13 +48,23 @@ public class HamiltonianCycleProblem {
     }
 
     private boolean isValid(int vertex, int actualPosition) {
-        return false;
+        // first criteria: whether the two nodes are connected?
+        if (adjacencyMatrix[hamiltonianPath[actualPosition - 1]][vertex] == 0) {
+            return false;
+        }
+        // second criteria: whether we have already visited this given node?
+        for (int i = 0; i < actualPosition; i++) {
+            if (hamiltonianPath[i] == vertex) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void showResult() {
         System.out.println("Hamiltonian cycle exists:");
-        for (int i = 0; i < hamiltonianPath.length; ++i) {
-            System.out.println(hamiltonianPath[i] + " - ");
+        for (int node : hamiltonianPath) {
+            System.out.print(node + " - ");
         }
         System.out.println(hamiltonianPath[0]);
     }
