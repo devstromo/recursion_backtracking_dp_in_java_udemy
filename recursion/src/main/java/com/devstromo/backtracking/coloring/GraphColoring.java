@@ -1,10 +1,10 @@
 package com.devstromo.backtracking.coloring;
 
 public class GraphColoring {
-    private int numOfVertices;
-    private int numOfColors;
-    private int[] colors;
-    private int[][] graph;
+    private final int numOfVertices;
+    private final int numOfColors;
+    private final int[] colors;
+    private final int[][] graph;
 
     public GraphColoring(int[][] graph, int numOfColors) {
         this.numOfColors = numOfColors;
@@ -31,6 +31,7 @@ public class GraphColoring {
         for (int colorIndex = 1; colorIndex <= numOfColors; ++colorIndex) {
             if (isColorValid(nodeIndex, colorIndex)) {
                 //assign and proceed with next vertex (node)
+                colors[nodeIndex] = colorIndex;
                 if (solveProblem(nodeIndex + 1))
                     return true;
 
@@ -41,7 +42,9 @@ public class GraphColoring {
     }
 
     private boolean isColorValid(int nodeIndex, int colorIndex) {
-
+        for (int i = 0; i < numOfVertices; ++i)
+            if (graph[nodeIndex][i] == 1 && colorIndex == colors[i])
+                return false;
         return true;
     }
 
