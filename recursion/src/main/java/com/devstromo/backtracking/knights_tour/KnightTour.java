@@ -64,6 +64,14 @@ public class KnightTour {
     }
 
     private boolean isValid(int x, int y) {
+        // can not leave the board horizontally and vertically
+        if (x < 0 || x >= boardSize)
+            return false;
+        if (y < 0 || y >= boardSize)
+            return false;
+        // we cannot visit the same cell multiple times
+        if (chessTable[x][y] != MIN_VALUE)
+            return false;
         return true;
     }
 
