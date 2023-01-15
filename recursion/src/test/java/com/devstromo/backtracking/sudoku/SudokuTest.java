@@ -21,8 +21,7 @@ class SudokuTest {
         };
 
         Sudoku problem = new Sudoku(sudokuTable);
-        problem.showSolution();
-
+        assertTrue(problem.solveProblem());
     }
 
 }
