@@ -1,6 +1,7 @@
 package com.devstromo.backtracking.sudoku;
 
 import static com.devstromo.backtracking.sudoku.Constants.BOARD_SIZE;
+import static com.devstromo.backtracking.sudoku.Constants.BOX_SIZE;
 import static com.devstromo.backtracking.sudoku.Constants.MAX_NUMBER;
 import static com.devstromo.backtracking.sudoku.Constants.MIN_NUMBER;
 
@@ -37,7 +38,7 @@ public class Sudoku {
             return solve(rowIndex + 1, colIndex);
         }
         // consider all the numbers from 1-9
-        for (int num = MIN_NUMBER; num < MAX_NUMBER; ++num) {
+        for (int num = MIN_NUMBER; num <= MAX_NUMBER; ++num) {
             if (isValid(rowIndex, colIndex, num)) {
                 //we assign the number to that location
                 sudokuTable[rowIndex][colIndex] = num;
@@ -52,6 +53,27 @@ public class Sudoku {
     }
 
     private boolean isValid(int rowIndex, int colIndex, int num) {
+        // if the given number is already in the column: the number
+        // cannot be part of the solution
+        for (int i = 0; i < BOARD_SIZE; ++i)
+            if (sudokuTable[i][colIndex] == num)
+                return false;
+
+        // if the given number is already in the row: the number
+        // cannot be part of the solution
+        for (int i = 0; i < BOARD_SIZE; ++i)
+            if (sudokuTable[rowIndex][i] == num)
+                return false;
+
+        // if the given number is already in the box: the number
+        // cannot be part of the solution
+        int boxRowOffset = (rowIndex / 3) * BOX_SIZE;
+        int boxColumnOffset = (colIndex / 3) * BOX_SIZE;
+        // all the 9 items of the box
+        for (int i = 0; i < BOX_SIZE; ++i)
+            for (int j = 0; j < BOX_SIZE; ++j)
+                if (sudokuTable[boxRowOffset + i][boxColumnOffset + j] == num)
+                    return false;
         return true;
     }
 
