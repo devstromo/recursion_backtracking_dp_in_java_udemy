@@ -49,4 +49,21 @@ public class KnapsackProblem {
             }
         }
     }
+
+    // m - capacity of the knapsack, w - weights, v - values, n - number of items we consider
+    public static int solveRecursion(int m, int[] w, int[] v, int n) {
+        // base case(s)
+        if (m == 0 || n == 0) {
+            return 0;
+        }
+        // calculate the subproblems with recursion
+        if (w[n - 1] > m) {
+            return solveRecursion(m, w, v, n - 1);
+        } else {
+            var nInclude = v[n - 1] + solveRecursion(m - w[n - 1], w, v, n - 1);
+            var nExclude = solveRecursion(m, w, v, n - 1);
+            return max(nInclude, nExclude);
+        }
+        // combine the sub results (here we just have to use the max function)
+    }
 }
