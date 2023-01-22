@@ -10,7 +10,7 @@ class KadaneAlgorithmTest {
     public void testKadaneAlgorithm() {
         int[] n = { 1, -2, 3, 4 };
         KadaneAlgorithm algorithm = new KadaneAlgorithm();
-        System.out.println(algorithm.run(n));
+        assertEquals(7, algorithm.run(n));
     }
 
 }
