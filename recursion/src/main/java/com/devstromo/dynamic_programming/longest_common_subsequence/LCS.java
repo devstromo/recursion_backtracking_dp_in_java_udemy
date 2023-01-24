@@ -36,7 +36,28 @@ public class LCS {
                 j--;
             }
         }
-        return lcs.reverse().toString();
+        return lcs.reverse()
+          .toString();
+    }
+
+    // O(2^N) - n == m
+    public int lcs(String s1, String s2, int m, int n) {
+        // we keep decrementing m and n
+        // this is the base-case for recursion
+        if (m == 0 || n == 0) {
+            return 0;
+        }
+        // the characters are matching in s1 and s2
+        // we keep comparing the characters starting with the last ones!!!
+        if (s1.charAt(m - 1) == s2.charAt(n - 1)) {
+            return 1 + lcs(s1, s1, m - 1, n - 1);
+        } else {
+            // characters are not matching: we either exclude the character
+            // from the first string or from the second
+            var x = lcs(s1, s2, m - 1, n);
+            var y = lcs(s1, s2, m, n - 1);
+            return max(x, y);
+        }
     }
 
 }

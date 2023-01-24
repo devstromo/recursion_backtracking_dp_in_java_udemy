@@ -26,4 +26,14 @@ class LCSTest {
         String result = lcs.lcs("abcd", "rtbxxxxd");
         assertEquals("bd", result);
     }
+
+    @Test
+    void testLcsRecursive() {
+        var lcs = new LCS();
+        var x = "MZJAWXU";
+        var y = "XMJYAUZ";
+
+        assertEquals(6, lcs.lcs(x, y, x.length(), y.length()));
+    }
+
 }
