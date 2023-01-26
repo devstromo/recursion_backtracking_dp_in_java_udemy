@@ -1,7 +1,5 @@
 package com.devstromo.divide_and_conquer.merge_sort;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
 class MergeSortTest {
