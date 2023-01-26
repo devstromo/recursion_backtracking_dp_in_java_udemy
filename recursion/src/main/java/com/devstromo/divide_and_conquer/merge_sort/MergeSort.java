@@ -17,6 +17,10 @@ public class MergeSort {
         mergeSort(0, nums.length - 1);
     }
 
+    public void reverseOrder() {
+        reverseMergeSort(0, nums.length - 1);
+    }
+
     // DIVIDE AND CONQUER APPROACH
     private void mergeSort(int low, int high) {
         //base-case
@@ -47,6 +51,60 @@ public class MergeSort {
         // we consider the temp array and copy the items into the nums
         while (i <= middle && j <= high) {
             if (tempArray[i] < tempArray[j]) {
+                nums[k] = tempArray[i];
+                ++i;
+            } else {
+                nums[k] = tempArray[j];
+                ++j;
+            }
+            ++k;
+        }
+
+        // we have to copy the items from the left sub-array (if there are any)
+        while (i <= middle) {
+            nums[k] = tempArray[i];
+            ++k;
+            ++i;
+        }
+
+        // we have to copy the items from the right sub-array (if there are any)
+        while (j <= high) {
+            nums[k] = tempArray[j];
+            ++k;
+            ++j;
+        }
+    }
+
+
+    private void reverseMergeSort(int low, int high) {
+        //base-case
+        if (low >= high) {
+            return;
+        }
+
+        // middle item
+        int middleIndex = (low + high) / 2;
+
+        // we keep splitting the problem into smaller sub-problems
+        reverseMergeSort(low, middleIndex);
+        reverseMergeSort(middleIndex + 1, high);
+
+        //we have to combine the sub-solutions
+        reverseMerge(low, middleIndex, high);
+    }
+
+    private void reverseMerge(int low, int middle, int high) {
+        // copy hte items into the temporary array
+        for (int i = low; i <= high; ++i) {
+            tempArray[i] = nums[i];
+        }
+        int i = low;
+        int j = middle + 1;
+        int k = low;
+
+        // we consider the temp array and copy the items into the nums
+        while (i <= middle && j <= high) {
+            if (tempArray[i] >= tempArray[j]) {
                 nums[k] = tempArray[i];
                 ++i;
             } else {

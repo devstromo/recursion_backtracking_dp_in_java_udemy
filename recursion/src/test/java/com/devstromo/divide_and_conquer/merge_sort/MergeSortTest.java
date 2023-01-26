@@ -13,10 +13,26 @@ class MergeSortTest {
     }
 
     @Test
-    public void testMergeSort1() {
+    public void testMergeSortTwo() {
         int[] nums = { -1, 0, 1 };
         MergeSort sort = new MergeSort(nums);
         sort.sort();
+        sort.showArray();
+    }
+
+    @Test
+    public void testMergeSortReverse() {
+        int[] nums = { -1, 0, 1 };
+        MergeSort sort = new MergeSort(nums);
+        sort.reverseOrder();
+        sort.showArray();
+    }
+
+    @Test
+    public void testMergeSortReverseTwo() {
+        int[] nums = { 5, -1, 0, 7, 2, 3, 2, 1, 0, 1, 2 };
+        MergeSort sort = new MergeSort(nums);
+        sort.reverseOrder();
         sort.showArray();
     }
 
